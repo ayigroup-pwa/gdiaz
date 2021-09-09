@@ -18,11 +18,27 @@ button.addEventListener('click', function(event) {
   }
 });
 
-fetch('https://httpbin.org/ip')
+let url ='https://httpbin.org/ip';
+let networkResponse = false;
+
+fetch(url)
   .then(function(res) {
     return res.json();
   })
   .then(function(data) {
+    networkResponse = true;
     console.log(data.origin);
     box.style.height = (data.origin.substr(0, 2) * 5) + 'px';
   });
+
+if ('caches' in window) {
+  caches.match(url).then( (response) => {
+    if (response){
+      response.json();
+    }
+  }).then( (data) => {
+    if (!networkResponse) {
+      box.style.height = (data.origin.substr(0, 2) * 5) + 'px';
+    }
+  })
+}
