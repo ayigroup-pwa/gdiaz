@@ -91,7 +91,7 @@ function updateUI(data) {
   }
 }
 
-var url = 'https://test-65778-default-rtdb.firebaseio.com/posts.json';
+var url = 'https://idb-test-362c7-default-rtdb.firebaseio.com/posts.json';
 var networkDataReceived = false;
 
 fetch(url)
